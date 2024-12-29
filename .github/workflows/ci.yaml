@@ -1,39 +1,41 @@
-name: CI for Book App
-on:
-  push:
-    branches: [main]
-  pull_request:
-    paths-ignore:
-      - 'README.md'
-      - 'frontend/**'
+## migrate を用意したらコメントアウトを解除する
 
-jobs:
-  check:
-    name: Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+# name: CI for Book App
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     paths-ignore:
+#       - 'README.md'
+#       - 'frontend/**'
 
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@v2
+# jobs:
+#   check:
+#     name: Check
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        run: |
-          rustup toolchain install stable
+#       - name: Cache dependencies
+#         uses: Swatinem/rust-cache@v2
 
-      - name: Install cargo-related tools
-        uses: taiki-e/install-action@v2
-        with:
-          tool: nextest,cargo-make
+#       - name: Install Rust toolchain
+#         run: |
+#           rustup toolchain install stable
 
-      - name: Tests compile
-        run: cargo make test-ci --no-run --locked
+#       - name: Install cargo-related tools
+#         uses: taiki-e/install-action@v2
+#         with:
+#           tool: nextest,cargo-make
 
-      - name: Test
-        run: cargo make test-ci
+#       - name: Tests compile
+#         run: cargo make test-ci --no-run --locked
 
-      - name: Clippy
-        run: cargo make clippy-ci -- -Dwarnings
+#       - name: Test
+#         run: cargo make test-ci
 
-      - name: Rustfmt
-        run: cargo make fmt -- --check
+#       - name: Clippy
+#         run: cargo make clippy-ci -- -Dwarnings
+
+#       - name: Rustfmt
+#         run: cargo make fmt -- --check
