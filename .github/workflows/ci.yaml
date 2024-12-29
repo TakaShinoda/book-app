@@ -1,33 +1,32 @@
-## migrate を用意したらコメントアウトを解除する
-
 # name: CI for Book App
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     paths-ignore:
-#       - 'README.md'
-#       - 'frontend/**'
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'frontend/**'
 
-# jobs:
-#   check:
-#     name: Check
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-#       - name: Cache dependencies
-#         uses: Swatinem/rust-cache@v2
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@v2
 
-#       - name: Install Rust toolchain
-#         run: |
-#           rustup toolchain install stable
+      - name: Install Rust toolchain
+        run: |
+          rustup toolchain install stable
 
-#       - name: Install cargo-related tools
-#         uses: taiki-e/install-action@v2
-#         with:
-#           tool: nextest,cargo-make
+      - name: Install cargo-related tools
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest,cargo-make
 
+# migrate を用意したらコメントアウトを解除する
 #       - name: Tests compile
 #         run: cargo make test-ci --no-run --locked
 
