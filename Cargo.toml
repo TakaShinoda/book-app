@@ -5,9 +5,12 @@ edition = "2021"
 
 [[bin]]
 name = "app"
-path = "src/main.rs"
+path = "src/bin/app.rs"
 
-[dependencies]
+[workspace]
+members = ["api", "kernel", "adapter", "shared", "registry"]
+
+[workspace.dependencies]
 anyhow = "1.0.75"
 axum = { version = "0.7.5", features = ["macros"] }
 sqlx = { version = "0.7.3", features = [
@@ -19,6 +22,14 @@ sqlx = { version = "0.7.3", features = [
     "migrate",
 ] }
 tokio = { version = "1.37.0", features = ["full"] }
-
-[dev-dependencies]
 rstest = "0.18.2"
+
+[dependencies]
+adapter.workspace = true
+api.workspace = true
+registry.workspace = true
+shared.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+axum.workspace = true
+sql.workspace = true
