@@ -38,7 +38,9 @@ JAEGER_PORT = 6831
 # ビルド・実行に関するタスク
 # ビルド前に DB と Redis を起動
 [tasks.before-build]
-run_task = [{ name = ["compose-up-db", "migrate", "compose-up-redis"] }]
+# migrate がないので一旦コメントアウト
+# run_task = [{ name = ["compose-up-db", "migrate", "compose-up-redis"] }]
+run_task = [{ name = ["compose-up-db", "compose-up-redis"] }]
 
 # Dpcker コンテナイメージをビルド
 [tasks.compose-build-app]
