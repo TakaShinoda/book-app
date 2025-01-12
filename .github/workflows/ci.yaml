@@ -26,15 +26,14 @@ jobs:
         with:
           tool: nextest,cargo-make
 
-# migrate を用意したらコメントアウトを解除する
-#       - name: Tests compile
-#         run: cargo make test-ci --no-run --locked
+      - name: Tests compile
+        run: cargo make test-ci --no-run --locked
 
-#       - name: Test
-#         run: cargo make test-ci
+      - name: Test
+        run: cargo make test-ci
 
-#       - name: Clippy
-#         run: cargo make clippy-ci -- -Dwarnings
+      - name: Clippy
+        run: cargo make clippy-ci -- -Dwarnings
 
-#       - name: Rustfmt
-#         run: cargo make fmt -- --check
+      - name: Rustfmt
+        run: cargo make fmt -- --check
