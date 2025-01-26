@@ -1,6 +1,8 @@
-use kernel::model::book::{event::CreateBook, Book};
+use kernel::model::{
+    book::{event::CreateBook, Book},
+    id::BookId,
+};
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
 // POST /books に送られてきた際の body に入っている JSON を表現する型
 #[derive(Debug, Deserialize)]
@@ -35,7 +37,7 @@ impl From<CreateBookRequest> for CreateBook {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BookResponse {
-    pub id: Uuid,
+    pub id: BookId,
     pub title: String,
     pub author: String,
     pub isbn: String,

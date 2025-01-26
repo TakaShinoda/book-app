@@ -1,7 +1,7 @@
 use std::net::{Ipv4Addr, SocketAddr};
 
 use adapter::database::connect_database_with;
-use anyhow::{Error, Ok, Result};
+use anyhow::Result;
 use api::route::{book::build_book_routers, health::build_health_check_routers};
 use axum::Router;
 use registry::AppRegistry;
@@ -9,7 +9,6 @@ use shared::config::AppConfig;
 use tokio::net::TcpListener;
 
 use shared::env::{which, Environment};
-use tokio::sync::broadcast::error;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 use tracing_subscriber::EnvFilter;
@@ -64,7 +63,6 @@ async fn bootstrap() -> Result<()> {
     let app = Router::new()
         .merge(build_health_check_routers())
         .merge(build_book_routers())
-        .layer(cors())
         // リクエストとレスポンス時にログを出力するレイヤーの追加
         .layer(
             TraceLayer::new_for_http()
