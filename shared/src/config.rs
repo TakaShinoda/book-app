@@ -25,3 +25,9 @@ pub struct DatabaseConfig {
     pub password: String,
     pub database: String,
 }
+
+// Redis に接続するための設定値を表す構造体
+pub struct RedisConfig {
+    pub host: String,
+    pub port: u16,
+}
