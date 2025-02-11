@@ -26,8 +26,9 @@ jobs:
         with:
           tool: nextest,cargo-make
 
-      - name: Tests compile
-        run: cargo make test-ci --no-run --locked
+      # テスト追加したらコメントアウト外す
+      # - name: Tests compile
+      #   run: cargo make test-ci --no-run --locked
 
       - name: Test
         run: cargo make test-ci
