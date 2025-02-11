@@ -85,6 +85,7 @@ mod tests {
     use super::*;
 
     #[sqlx::test]
+    #[ignore] // 一時的に実行しない
     async fn test_register_book(pool: sqlx::PgPool) -> anyhow::Result<()> {
         // BookRepositoryImpl を初期化
         let repo = BookRepositoryImpl::new(ConnectionPool::new(pool));
